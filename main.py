@@ -1,6 +1,8 @@
 import pygame
 import random
-import world
+import world_1
+import tiles
+from player import Player
 
 # set up pygame modules
 pygame.init()
@@ -12,6 +14,7 @@ pygame.display.set_caption("Pygame Introduction")
 size = (1920, 1020)
 screen = pygame.display.set_mode(size)
 
+p = Player(200, 200)
 
 
 # render the text for later
@@ -27,6 +30,7 @@ while run:
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
+    screen.blit(p.image, p.rect)
     pygame.display.update()
 
 # Once we have exited the main program loop we can stop the game engine:
