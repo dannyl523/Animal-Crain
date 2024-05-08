@@ -10,7 +10,7 @@ class Player:
         self.rescale_image(self.image)
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 5
+        self.delta = 1
 
     def rescale_image(self, image):
         self.image_size = self.image.get_size()
@@ -22,22 +22,18 @@ class Player:
         if direction == "up":
             self.image = pygame.image.load(self.image_list[0])
             self.rescale_image(self.image)
-            self.image_size = self.image.get_size()
             self.y = self.y - self.delta
         if direction == "down":
             self.image = pygame.image.load(self.image_list[1])
             self.rescale_image(self.image)
-            self.image_size = self.image.get_size()
             self.y = self.y + self.delta
         if direction == "left":
             self.image = pygame.image.load(self.image_list[2])
             self.rescale_image(self.image)
-            self.image_size = self.image.get_size()
             self.x = self.x - self.delta
         if direction == "right":
             self.image = pygame.image.load(self.image_list[3])
             self.rescale_image(self.image)
-            self.image_size = self.image.get_size()
             self.x = self.x + self.delta
 
         # don't let the player move if it's at the bottom or top of the screen

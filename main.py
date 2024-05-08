@@ -1,8 +1,11 @@
 import pygame
 import random
 import world_1
-import tiles
 from player import Player
+
+world = [ [1, 1, 1, 1, 2, 2, 2, 1, 1, 1],
+          [1, 1, 1, 1, 2, 1, 2, 1, 1, 1]
+          ]
 
 # set up pygame modules
 pygame.init()
@@ -26,10 +29,19 @@ run = True
 # -------- Main Program Loop -----------
 while run:
     # --- Main event loop
+    keys = pygame.key.get_pressed()  # checking pressed keys
+    if keys[pygame.K_d]:
+        p.move_player("right")
+    if keys[pygame.K_a]:
+        p.move_player("left")
+    if keys[pygame.K_w]:
+        p.move_player("up")
+    if keys[pygame.K_s]:
+        p.move_player("down")
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
-
+    screen.fill((255, 255, 255))
     screen.blit(p.image, p.rect)
     pygame.display.update()
 
