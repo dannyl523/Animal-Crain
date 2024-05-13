@@ -18,7 +18,7 @@ class Player:
         self.image = pygame.transform.scale(self.image, scale_size)
 
     def move_player(self, direction):
-        # move the balloon up or down based on the direction!
+        # move the player based on the direction!
         if direction == "up":
             self.image = pygame.image.load(self.image_list[0])
             self.rescale_image(self.image)
