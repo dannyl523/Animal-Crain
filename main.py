@@ -1,11 +1,10 @@
 import pygame
 import random
 from player import Player
-from world_1 import World
+from world import World
 
-world_list = [ [1, 1, 1, 1, 2, 2, 2, 1, 1, 1],
-          ]
-
+world_1 = World()
+world_1_grid = world_1.create_world()
 
 # set up pygame modules
 pygame.init()
@@ -37,29 +36,19 @@ while run:
         p.move_player("up")
     if keys[pygame.K_s]:
         p.move_player("down")
-# WORLD
-    left_right_row = 0
-    y = 10
-    for i in range(10):
-        tiles = []
-        updown_row = 0
-        x = 10
-        for j in range(5):
-            t = World(x, y, updown_row, left_right_row, world_list[updown_row])
-            left_right_row += 1
-            x = x + 24
-            tiles.append(t)
-        updown_row += 1
-        y = y + 24
 
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
+
+
     # SCREEN FILL
     screen.fill((255, 255, 255))
     # ------------------------------- #
-    screen.blit(t.image, t.rect)
+    for row in world_1_grid:
+        for tile in row:
+            screen.blit(tile.image, tile.rect)
     screen.blit(p.image, p.rect)
     pygame.display.update()
 
