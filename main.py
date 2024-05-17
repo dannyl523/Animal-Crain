@@ -2,6 +2,7 @@ import pygame
 import random
 from player import Player
 from world import World
+from tiles import Tiles
 
 world_1 = World()
 world_1_grid = world_1.create_world()
@@ -16,7 +17,7 @@ pygame.display.set_caption("Pygame Introduction")
 size = (1920, 1020)
 screen = pygame.display.set_mode(size)
 
-p = Player(200, 200)
+p = Player(1000, 10)
 
 # render the text for later
 
