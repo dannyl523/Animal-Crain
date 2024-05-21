@@ -7,6 +7,7 @@ class Tiles:
         self.y = y
         self.column = column
         self.row = row
+        self.tile_type = tile_type
         self.image_list = ["images/tile_grass.png", "images/tile_magma.png", "images/tile_pavement.png", "images/tile_water.png"]
         if tile_type == 0:
             self.image = pygame.image.load(self.image_list[0])

@@ -7,6 +7,12 @@ from tiles import Tiles
 world_1 = World()
 world_1_grid = world_1.create_world()
 
+
+def check_tiles(self):
+    for row in world_1_grid:
+        for tile in row:
+            if tile.tile_type == 2:
+
 # set up pygame modules
 pygame.init()
 pygame.font.init()
@@ -17,7 +23,7 @@ pygame.display.set_caption("Pygame Introduction")
 size = (1920, 1020)
 screen = pygame.display.set_mode(size)
 
-p = Player(1000, 10)
+p = Player(70, 900)
 
 # render the text for later
 

@@ -1,5 +1,5 @@
 import pygame
-from tiles import Tiles
+from world import World
 
 class Player:
 
@@ -11,19 +11,22 @@ class Player:
         self.rescale_image(self.image)
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = 1
+        self.delta = 2
 
     def rescale_image(self, image):
         self.image_size = self.image.get_size()
         scale_size = (self.image_size[0] * .7, self.image_size[1] * .7)
         self.image = pygame.transform.scale(self.image, scale_size)
 
+
     def move_player(self, direction):
         # move the player based on the direction!
         if direction == "up":
-            self.image = pygame.image.load(self.image_list[0])
-            self.rescale_image(self.image)
-            self.y = self.y - self.delta
+            if self.y - 2 >= 2:
+                self.image = pygame.image.load(self.image_list[0])
+                self.rescale_image(self.image)
+                self.y = self.y - self.delta
+
         if direction == "down":
             self.image = pygame.image.load(self.image_list[1])
             self.rescale_image(self.image)
@@ -39,3 +42,5 @@ class Player:
 
         # don't let the player move if it's at the bottom or top of the screen
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+
+
