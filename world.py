@@ -6,6 +6,7 @@ class World:
     def __init__(self):
         self.generated_world = self.create_world
 
+
     def create_world(self):
         f = open("world1", "r")
         grid = []
