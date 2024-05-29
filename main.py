@@ -1,5 +1,4 @@
 import pygame
-import random
 from player import Player
 from world import World
 from tiles import Tiles
@@ -8,10 +7,21 @@ world_1 = World()
 world_1_grid = world_1.create_world()
 
 
-def check_tiles(self):
-    for row in world_1_grid:
-        for tile in row:
-            if tile.tile_type == 2:
+def check_tiles():
+    if p.x <= 60:
+        p.x = 70
+        p.y = 900
+    if p.y <= 95:
+        p.x = 70
+        p.y = 900
+    if p.x >= 1060 and p.y <= 200:
+        p.x = 70
+        p.y = 900
+    if p.x >= 160 and p.y >= 180 and p.y <= 295:
+        p.x = 70
+        p.y = 900
+        print("3rd")
+
 
 # set up pygame modules
 pygame.init()
@@ -22,11 +32,11 @@ pygame.display.set_caption("Pygame Introduction")
 # set up variables for the display
 size = (1920, 1020)
 screen = pygame.display.set_mode(size)
-
 p = Player(70, 900)
+mouse_pos = (0, 0)
 
 # render the text for later
-
+mouse_position = my_font.render(str(mouse_pos), False, (255, 255, 255))
 
 # The loop will carry on until the user exits the game (e.g. clicks the close button).
 run = True
@@ -37,18 +47,22 @@ while run:
     keys = pygame.key.get_pressed()  # checking pressed keys
     if keys[pygame.K_d]:
         p.move_player("right")
+        check_tiles()
     if keys[pygame.K_a]:
         p.move_player("left")
+        check_tiles()
     if keys[pygame.K_w]:
         p.move_player("up")
+        check_tiles()
     if keys[pygame.K_s]:
         p.move_player("down")
+        check_tiles()
 
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
-
-
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_position = my_font.render(str(mouse_pos), False, (255, 255, 255))
 
     # SCREEN FILL
     screen.fill((255, 255, 255))
@@ -57,6 +71,7 @@ while run:
         for tile in row:
             screen.blit(tile.image, tile.rect)
     screen.blit(p.image, p.rect)
+    screen.blit(mouse_position, (1000, 100))
     pygame.display.update()
 
 # Once we have exited the main program loop we can stop the game engine:
