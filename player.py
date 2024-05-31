@@ -22,25 +22,28 @@ class Player:
     def move_player(self, direction):
         # move the player based on the direction!
         if direction == "up":
-            if self.y - 2 >= 2:
-                self.image = pygame.image.load(self.image_list[0])
-                self.rescale_image(self.image)
-                self.y = self.y - self.delta
+            self.image = pygame.image.load(self.image_list[0])
+            self.rescale_image(self.image)
+            self.y = self.y - self.delta
+            self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
 
         if direction == "down":
             self.image = pygame.image.load(self.image_list[1])
             self.rescale_image(self.image)
             self.y = self.y + self.delta
+            self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+
         if direction == "left":
             self.image = pygame.image.load(self.image_list[2])
             self.rescale_image(self.image)
             self.x = self.x - self.delta
+            self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+
         if direction == "right":
             self.image = pygame.image.load(self.image_list[3])
             self.rescale_image(self.image)
             self.x = self.x + self.delta
+            self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
 
-        # don't let the player move if it's at the bottom or top of the screen
-        self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
 
 
