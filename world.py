@@ -43,14 +43,14 @@ class World:
             x_world2 = 10
             for character in line:
                 if character == "#":
-                    t = Tiles(x_world2, y_world2, rowing_world2, column_world2, 3)
+                    t = Tiles(x_world2, y_world2, rowing_world2, column_world2, 4)
                     rowing_world2 = rowing_world2 + 1
                     x_world2 = x_world2 + 30
                     row_world2.append(t)
                 if character == ".":
                     t = Tiles(x_world2, y_world2, rowing_world2, column_world2, 1)
                     rowing_world2 = rowing_world2 + 1
-                    x_world2 = x_world2 + 30
+                    x_world2 = x_world2 + 24
                     row_world2.append(t)
             column_world2 = column_world2 + 1
             y_world2 = y_world2 + 24

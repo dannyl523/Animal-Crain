@@ -5,7 +5,9 @@ from tiles import Tiles
 from world_items import Items
 
 world_1 = World()
-world_1_grid = world_1.create_world_2()
+world_1_grid = world_1.create_world_1()
+world_2 = World()
+world_2_grid = world_2.create_world_2()
 
 def check_tiles():
     if on_hut == False:
@@ -42,6 +44,7 @@ p = Player(70, 900)
 h = Items(1200, 500, 0)
 h.check_image(h.image_type)
 on_hut = False
+world_1_phase = True
 mouse_pos = (0, 0)
 
 # render the text for later
@@ -51,26 +54,25 @@ player_position = my_font.render(str(p.x) + str(p.y), False, (255, 255, 255))
 # The loop will carry on until the user exits the game (e.g. clicks the close button).
 run = True
 
+
 # -------- Main Program Loop -----------
 while run:
     # --- Main event loop
     if p.x >= 1040 and p.y <= 200:
         on_hut = True
+        world_1_phase = False
 
     keys = pygame.key.get_pressed()  # checking pressed keys
     if keys[pygame.K_d]:
         p.move_player("right")
-        check_tiles()
     if keys[pygame.K_a]:
         p.move_player("left")
-        check_tiles()
     if keys[pygame.K_w]:
         p.move_player("up")
-        check_tiles()
     if keys[pygame.K_s]:
         p.move_player("down")
+    if world_1_phase == True:
         check_tiles()
-
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
@@ -81,11 +83,17 @@ while run:
     # SCREEN FILL
     screen.fill((255, 255, 255))
     # ------------------------------- #
-    for row in world_1_grid:
-        for tile in row:
-            screen.blit(tile.image, tile.rect)
+    if world_1_phase == True:
+        for row in world_1_grid:
+            for tile in row:
+                screen.blit(tile.image, tile.rect)
+        screen.blit(h.image, (1000, -10))
+    if on_hut == True:
+        for row in world_2_grid:
+            for tile in row:
+                screen.blit(tile.image, tile.rect)
+
     screen.blit(p.image, p.rect)
-    screen.blit(h.image, (1000, -10))
     screen.blit(mouse_position, (1000, 100))
     screen.blit(player_position, (1000, 900))
     pygame.display.update()
