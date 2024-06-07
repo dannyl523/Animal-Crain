@@ -5,6 +5,7 @@ class World:
 
     def __init__(self):
         self.generated_world = self.create_world_1
+        self.generated_world = self.create_world_2
 
 
     def create_world_1(self):

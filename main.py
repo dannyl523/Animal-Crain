@@ -43,6 +43,7 @@ def check_tiles_w2():
         p.y = 490
 
 
+
 # set up pygame modules
 pygame.init()
 pygame.font.init()
@@ -59,7 +60,7 @@ h.check_image(h.image_type)
 on_hut = False
 world_1_phase = True
 w2_start = False
-
+condition = False
 
 # render the text for later
 player_position = my_font.render(str(p.x) + str(p.y), False, (255, 255, 255))
@@ -90,7 +91,13 @@ while run:
         check_tiles_w1()
     if on_hut == True:
         check_tiles_w2()
-
+        if condition == True and (p.x < 400 and p.y > 400 and p.y < 530):
+            p.x = 100
+            p.y = 200
+            p.delta = 2
+            on_hut = False
+            world_1_phase = True
+            w2_start = False
 
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
@@ -101,11 +108,13 @@ while run:
     screen.fill((255, 255, 255))
     # ------------------------------- #
     if world_1_phase == True:
+        condition = False
         for row in world_1_grid:
             for tile in row:
                 screen.blit(tile.image, tile.rect)
         screen.blit(h.image, (1000, -10))
     if on_hut == True:
+        condition = True
         for row in world_2_grid:
             for tile in row:
                 screen.blit(tile.image, tile.rect)
