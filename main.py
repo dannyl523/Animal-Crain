@@ -38,7 +38,7 @@ def check_tiles_w2():
     if p.y >= 735:
         p.x = 400
         p.y = 490
-    if (p.x <= 375 and p.y >= 510) or (p.x <= 375 and p.y <= 400):
+    if p.x < 390 and (p.y > 510 or p.y < 400):
         p.x = 400
         p.y = 490
 
@@ -91,9 +91,9 @@ while run:
         check_tiles_w1()
     if on_hut == True:
         check_tiles_w2()
-        if condition == True and (p.x < 400 and p.y > 400 and p.y < 530):
-            p.x = 100
-            p.y = 200
+        if condition == True and (p.x < 380 and (p.y > 400 or p.y < 530)):
+            p.x = 970
+            p.y = 150
             p.delta = 2
             on_hut = False
             world_1_phase = True
